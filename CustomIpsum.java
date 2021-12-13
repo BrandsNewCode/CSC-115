@@ -43,7 +43,7 @@ import java.util.*;
                            if (takeWords(sc, userWords) != -1) {
                                 if (userWords.size() <= 0.5 * latinWords.size()) {
                                     for (int i = 0; i < (0.25 * latinWords.size()); i++) {
-                                    latinWords.add(rand.nextInt(latinWords.size()), userWords.get(rand.nextInt(userWords.size())));
+                                    latinWords.add(latinWords.size() - rand.nextInt(latinWords.size() - 2), userWords.get(rand.nextInt(userWords.size())));
                                     }
                                 }
                             }
@@ -149,22 +149,26 @@ import java.util.*;
         }
 
         public static void generateText(ArrayList<String> latinWords, Scanner sc) {
-            //System.out.println("Stub method 3");
             int numOfParagraphs = numberOfParagraphs(sc);
-            System.out.print(latinWords.get(0) + " " + latinWords.get(1) + ", ");
+            System.out.print("" + latinWords.get(0) + " " + latinWords.get(1) + ", ");
             for(int h = 0;h < numOfParagraphs; h++) {
-                System.out.println("\n");
+                System.out.print("\n\t");
                 for (int i = 2; i < latinWords.size() - 1; i++) {
                     System.out.print(latinWords.get(i) + " ");
                     for (int j = i; j % 15 == 0; j++) {
-                        System.out.println("\n");
+                        System.out.println("");
                     }
                 }
             }
+            System.out.println("\n");
 
 
         }
 
     }
 
-
+/*
+1.) Randomize the paragraph content after the first
+2.) Adjust lengths of paragraphs to be pseudo-random
+3.) Do not allow excessive repeat numbers
+*/
